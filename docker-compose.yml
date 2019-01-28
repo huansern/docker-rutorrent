@@ -1,0 +1,36 @@
+version: '3.7'
+services:
+  rtorrent:
+    container_name: rtorrent
+    build:
+      context: ./rtorrent
+      args:
+        - UID=1000
+        - GID=1000
+    image: rtorrent:latest
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - /home/user/rtorrent/watch:/rtorrent/watch
+      - /home/user/rtorrent/downloads:/rtorrent/downloads
+      - /home/user/rtorrent/log:/rtorrent/log
+      - /home/user/rtorrent/.session:/rtorrent/.session
+      - /home/user/rtorrent/.rtorrent.rc:/rtorrent/.rtorrent.rc
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+    image: rutorrent:nginx
+    network_mode: host
+    restart: unless-stopped
+  rutorrent:
+    container_name: rutorrent
+    build:
+      context: ./rutorrent
+      args:
+        - GID=1000
+    image: rutorrent:php-fpm
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - /home/user/rtorrent:/rtorrent
