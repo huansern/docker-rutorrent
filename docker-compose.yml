@@ -24,12 +24,16 @@ services:
     container_name: nginx
     build:
       context: ./nginx
+      args:
+        - GID=1000
     image: rutorrent:nginx
     ports:
       - "80:80"
     networks:
       - rutorrent
     restart: unless-stopped
+    volumes:
+      - /home/user/rutorrent:/rutorrent
   rutorrent:
     container_name: rutorrent
     build:
@@ -42,6 +46,7 @@ services:
     restart: unless-stopped
     volumes:
       - /home/user/rtorrent:/rtorrent
+      - /home/user/rutorrent:/rutorrent
 
 networks:
   rutorrent:
