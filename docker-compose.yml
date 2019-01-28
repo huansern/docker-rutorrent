@@ -8,7 +8,11 @@ services:
         - UID=1000
         - GID=1000
     image: rtorrent:latest
-    network_mode: host
+    ports:
+      - "6881:6881/udp"
+      - "49164:49164"
+    networks:
+      - rutorrent
     restart: unless-stopped
     volumes:
       - /home/user/rtorrent/watch:/rtorrent/watch
@@ -21,7 +25,10 @@ services:
     build:
       context: ./nginx
     image: rutorrent:nginx
-    network_mode: host
+    ports:
+      - "80:80"
+    networks:
+      - rutorrent
     restart: unless-stopped
   rutorrent:
     container_name: rutorrent
@@ -30,7 +37,11 @@ services:
       args:
         - GID=1000
     image: rutorrent:php-fpm
-    network_mode: host
+    networks:
+      - rutorrent
     restart: unless-stopped
     volumes:
       - /home/user/rtorrent:/rtorrent
+
+networks:
+  rutorrent:

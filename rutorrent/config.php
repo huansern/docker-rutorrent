@@ -28,7 +28,7 @@
 	$forbidUserSettings = false;
 
 	$scgi_port = 5000;
-	$scgi_host = "127.0.0.1";
+	$scgi_host = "rtorrent";
 
 	// For web->rtorrent link through unix domain socket
 	// (scgi_local in rtorrent conf file), change variables

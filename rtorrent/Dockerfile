@@ -13,6 +13,6 @@ USER rtorrent
 
 RUN mkdir ~/watch ~/downloads ~/log ~/.session
 
-EXPOSE 5000 6881 49164
+EXPOSE 5000 6881/udp 49164
 
 CMD [ "rtorrent" ]
