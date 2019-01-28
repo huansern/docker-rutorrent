@@ -16,11 +16,9 @@ mkdir tmp && \
 mv plugins/* tmp && \
 mv tmp/_getdir plugins && \
 mv tmp/_noty2 plugins && \
-mv tmp/check_port plugins && \
 mv tmp/chunks plugins && \
 mv tmp/cpuload plugins && \
 mv tmp/diskspace plugins && \
-mv tmp/erasedata plugins && \
 mv tmp/geoip plugins && \
 mv tmp/ipad plugins && \
 mv tmp/seedingtime plugins && \
